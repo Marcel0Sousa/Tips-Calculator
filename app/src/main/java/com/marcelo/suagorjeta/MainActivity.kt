@@ -28,14 +28,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnCalcular.setOnClickListener {
-            val valorConta: Float = binding.edtValorConta.text.toString().toFloat()
-            val nPessoas: Int = binding.edtTotalPessoas.text.toString().toInt()
+            val vConta = binding.edtValorConta.text
+            val nPessoas = binding.edtTotalPessoas.text
+            if (vConta?.isEmpty() == true || nPessoas?.isEmpty() == true) {
+                Snackbar.make(binding.main, "Preencha todos os campos", Snackbar.LENGTH_SHORT).show()
+            } else {
+                val valorConta: Float = binding.edtValorConta.text.toString().toFloat()
+                val nPessoas: Int = binding.edtTotalPessoas.text.toString().toInt()
+                val valorTemporario = valorConta / nPessoas
+                val porcentagemGorjeta = (valorTemporario * percentual) / 100
+                val valorFinal = valorTemporario + porcentagemGorjeta
+                binding.tvResultado.text = getString(R.string.label_result, valorFinal.toString())
+            }
+        }
 
-            val valorTemporario = valorConta / nPessoas
-            val porcentagemGorjeta = (valorTemporario * percentual) / 100
-            val valorFinal = valorTemporario + porcentagemGorjeta
-
-            binding.tvResultado.text = getString(R.string.label_result, valorFinal.toString())
+        binding.btnLimpar.setOnClickListener {
+            binding.edtValorConta.setText("")
+            binding.edtTotalPessoas.setText("")
+            binding.tvResultado.setText("")
+            binding.rbOpcao1.isChecked = false
+            binding.rbOpcao2.isChecked = false
+            binding.rbOpcao3.isChecked = false
         }
 
     }
