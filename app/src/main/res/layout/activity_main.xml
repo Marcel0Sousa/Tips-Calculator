@@ -125,4 +125,15 @@
         app:layout_constraintStart_toStartOf="@id/guide_vertical"
         app:layout_constraintTop_toBottomOf="@id/rg_porcentagem" />
 
+    <TextView
+        android:id="@+id/tv_resultado"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="58dp"
+        tools:text="0.0"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_limpar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

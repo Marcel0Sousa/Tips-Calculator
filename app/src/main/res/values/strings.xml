@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sua Gorjeta</string>
+    <string name="label_result">R$%1$s</string>
 </resources>
