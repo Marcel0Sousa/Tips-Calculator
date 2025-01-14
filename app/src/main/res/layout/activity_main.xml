@@ -46,24 +46,17 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_number_2"
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/sp_num_pessoas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/til_number_1">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_total_pessoas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Informe o número de pessoas na mesa"
-            android:inputType="number"
-            android:maxLength="2"
-            android:maxLines="1" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:hint="Informe o número de pessoas na mesa"
+        android:inputType="number"
+        android:maxLength="2"
+        android:maxLines="1"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/til_number_1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_vertical"
@@ -80,9 +73,9 @@
         android:layout_marginBottom="12dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@id/til_number_2"
+        app:layout_constraintEnd_toEndOf="@id/sp_num_pessoas"
         app:layout_constraintStart_toStartOf="@id/til_number_1"
-        app:layout_constraintTop_toBottomOf="@id/til_number_2">
+        app:layout_constraintTop_toBottomOf="@id/sp_num_pessoas">
 
         <RadioButton
             android:id="@+id/rb_opcao_1"
@@ -127,13 +120,13 @@
 
     <TextView
         android:id="@+id/tv_resultado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="58dp"
-        tools:text="0.0"
-        android:textSize="32sp"
-        app:layout_constraintTop_toBottomOf="@id/btn_limpar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_limpar"
+        tools:text="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
