@@ -1,7 +1,11 @@
 package com.marcelo.suagorjeta
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.google.android.material.snackbar.Snackbar
 import com.marcelo.suagorjeta.databinding.ActivityMainBinding
 
@@ -27,14 +31,34 @@ class MainActivity : AppCompatActivity() {
             if (isChecked) percentual = 20
         }
 
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.num_pessoas,
+            android.R.layout.simple_spinner_item
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spNumPessoas.adapter = adapter
+
+        var numPessoas = 0
+        binding.spNumPessoas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                numPessoas = position
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
+
         binding.btnCalcular.setOnClickListener {
             val vConta = binding.edtValorConta.text
-            val nPessoas = binding.edtTotalPessoas.text
-            if (vConta?.isEmpty() == true || nPessoas?.isEmpty() == true) {
+            if (vConta?.isEmpty() == true) {
                 Snackbar.make(binding.main, "Preencha todos os campos", Snackbar.LENGTH_SHORT).show()
             } else {
                 val valorConta: Float = binding.edtValorConta.text.toString().toFloat()
-                val nPessoas: Int = binding.edtTotalPessoas.text.toString().toInt()
+                val nPessoas: Int = numPessoas
                 val valorTemporario = valorConta / nPessoas
                 val porcentagemGorjeta = (valorTemporario * percentual) / 100
                 val valorFinal = valorTemporario + porcentagemGorjeta
@@ -44,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLimpar.setOnClickListener {
             binding.edtValorConta.setText("")
-            binding.edtTotalPessoas.setText("")
             binding.tvResultado.setText("")
             binding.rbOpcao1.isChecked = false
             binding.rbOpcao2.isChecked = false
